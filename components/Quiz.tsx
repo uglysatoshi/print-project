@@ -30,29 +30,36 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
   const router = useRouter();
 
   const handleAnswerClick = (answer: string) => {
-    if (answer === questions[currentQuestionIndex].correctAnswer) {
-      setScore((prev: number) => prev + 1);
-      if (questions[currentQuestionIndex].theme === "Современные технологии цифровой печати") {
-        setScore1((prev: number) => prev + 1);
+      if (answer === questions[currentQuestionIndex].correctAnswer) {
+        setScore((prev: number) => prev + 1);
+        // Подсчёт баллов по темам
+        switch (questions[currentQuestionIndex].theme) {
+          case "Современные технологии цифровой печати":
+            setScore1((prev) => prev + 1);
+            break;
+          case "Электрофотография":
+            setScore2((prev) => prev + 1);
+            break;
+          case "Импульсная и непрерывная струйная печать":
+            setScore3((prev) => prev + 1);
+            break;
+          case "Термографические и термосублимационные технологии":
+            setScore4((prev) => prev + 1);
+            break;
+          case "Цифровая фотопечать":
+            setScore5((prev) => prev + 1);
+            break;
+          case "Технологии Computer":
+            setScore6((prev) => prev + 1);
+            break;
+          default:
+            console.warn(`Unknown theme: ${questions[currentQuestionIndex].theme}`);
+
       }
-      if (questions[currentQuestionIndex].theme === "Электрофотография") {
-        setScore2((prev: number) => prev + 1);
-      }
-      if (questions[currentQuestionIndex].theme === "Импульсная и непрерывная струйная печать") {
-        setScore3((prev: number) => prev + 1);
-      }
-      if (questions[currentQuestionIndex].theme === "Термографические и термосублимационные технологии") {
-        setScore4((prev: number) => prev + 1);
-      }
-      if (questions[currentQuestionIndex].theme === "Цифровая фотопечать") {
-        setScore5((prev: number) => prev + 1);
-      }
-      if (questions[currentQuestionIndex].theme === "Технологии Computer-to-") {
-        setScore6((prev: number) => prev + 1);
-      }
+      console.log(score, theme1, theme2, theme3, theme4, theme5, theme6);
+      setSelectedAnswer(answer);
     }
-    setSelectedAnswer(answer);
-  };
+  }
 
   const handleNextQuestion = () => {
     setSelectedAnswer(null);

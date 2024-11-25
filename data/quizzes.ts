@@ -406,7 +406,7 @@ export const quizData: Question[] = [
   },
   // Тема 6: Технологии 'Computer-to-'
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Что означает технология 'Computer-to-Plate'?",
     options: [
       "Прямая запись изображения с компьютера на печатную форму",
@@ -416,7 +416,7 @@ export const quizData: Question[] = [
     correctAnswer: "Прямая запись изображения с компьютера на печатную форму",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Какая основная цель технологии 'Computer-to-Print'?",
     options: [
       "Избежать промежуточных этапов, печатая напрямую с цифрового файла",
@@ -426,7 +426,7 @@ export const quizData: Question[] = [
     correctAnswer: "Избежать промежуточных этапов, печатая напрямую с цифрового файла",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Чем отличается 'Computer-to-Film' от других технологий?",
     options: [
       "Изображение записывается на плёнку, которая затем используется для печатной формы",
@@ -436,13 +436,13 @@ export const quizData: Question[] = [
     correctAnswer: "Изображение записывается на плёнку, которая затем используется для печатной формы",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Какая из технологий 'Computer-to-' считается самой современной?",
     options: ["Computer-to-Press", "Computer-to-Film", "Computer-to-Future"],
     correctAnswer: "Computer-to-Press",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Какая особенность технологии 'Computer-to-Press'?",
     options: [
       "Прямая передача изображения на печатную машину",
@@ -452,7 +452,7 @@ export const quizData: Question[] = [
     correctAnswer: "Прямая передача изображения на печатную машину",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Какое преимущество у 'Computer-to-Plate' перед офсетной печатью?",
     options: [
       "Более точная передача изображения на форму",
@@ -462,7 +462,7 @@ export const quizData: Question[] = [
     correctAnswer: "Более точная передача изображения на форму",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "В каких случаях используется 'Computer-to-Film'?",
     options: [
       "Для создания шаблонов при массовом производстве",
@@ -472,7 +472,7 @@ export const quizData: Question[] = [
     correctAnswer: "Для создания шаблонов при массовом производстве",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Что является ключевым преимуществом технологии 'Computer-to-Print'?",
     options: [
       "Возможность печатать небольшие тиражи быстро и экономично",
@@ -482,13 +482,13 @@ export const quizData: Question[] = [
     correctAnswer: "Возможность печатать небольшие тиражи быстро и экономично",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Какая из технологий особенно подходит для гибких тиражей?",
     options: ["Computer-to-Print", "Computer-to-Plate", "Computer-to-Magic"],
     correctAnswer: "Computer-to-Print",
   },
   {
-    theme: "Технологии Computer-to-",
+    theme: "Технологии Computer",
     question: "Какое оборудование нужно для технологии 'Computer-to-Press'?",
     options: [
       "Цифровая печатная машина",
