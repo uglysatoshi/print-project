@@ -52,7 +52,7 @@ export default function Home() {
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="group">Группа</Label>
-                                <Input id="group" placeholder="4-ZoV-7" onChange={handleChange}/>
+                                <Input id="group" placeholder="4-ТИД-7" onChange={handleChange}/>
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="framework">Дата прохождения</Label>
