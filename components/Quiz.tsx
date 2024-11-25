@@ -5,19 +5,53 @@ import { useRouter } from 'next/navigation';
 import { Question } from '@/data/quizzes';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import {useUserContext} from "@/context/UserContext";
 
 interface QuizProps {
   questions: Question[];
 }
 
 const Quiz: React.FC<QuizProps> = ({ questions }) => {
+  const { setUserData } = useUserContext();
+  const [score, setScore] = useState(0);
+  const [theme1, setScore1] = useState(0);
+  const [theme2, setScore2] = useState(0);
+  const [theme3, setScore3] = useState(0);
+  const [theme4, setScore4] = useState(0);
+  const [theme5, setScore5] = useState(0);
+  const [theme6, setScore6] = useState(0);
+
+
+  const { name, group, date } = useUserContext();
+
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const router = useRouter();
 
   const handleAnswerClick = (answer: string) => {
+    if (answer === questions[currentQuestionIndex].correctAnswer) {
+      setScore((prev: number) => prev + 1);
+      if (questions[currentQuestionIndex].theme === "Современные технологии цифровой печати") {
+        setScore1((prev: number) => prev + 1);
+      }
+      if (questions[currentQuestionIndex].theme === "Электрофотография") {
+        setScore2((prev: number) => prev + 1);
+      }
+      if (questions[currentQuestionIndex].theme === "Импульсная и непрерывная струйная печать") {
+        setScore3((prev: number) => prev + 1);
+      }
+      if (questions[currentQuestionIndex].theme === "Термографические и термосублимационные технологии") {
+        setScore4((prev: number) => prev + 1);
+      }
+      if (questions[currentQuestionIndex].theme === "Цифровая фотопечать") {
+        setScore5((prev: number) => prev + 1);
+      }
+      if (questions[currentQuestionIndex].theme === "Технологии Computer-to-") {
+        setScore6((prev: number) => prev + 1);
+      }
+    }
     setSelectedAnswer(answer);
-
   };
 
   const handleNextQuestion = () => {
@@ -25,15 +59,27 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
-      router.push('/results'); 
+      setUserData({
+        name: name,
+        group: group,
+        date: date,
+        score: score,
+        theme1: theme1,
+        theme2: theme2,
+        theme3: theme3,
+        theme4: theme4,
+        theme5: theme5,
+        theme6: theme6,
+      });
+      router.push('/results');
     }
   };
 
   const question = questions[currentQuestionIndex];
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <Card className="w-full max-w-md mb-6">
+    <div className="flex flex-col items-center justify-center ">
+      <Card className="max-w-xl mb-6">
         <CardHeader>
           <CardTitle className="text-xl">{question.question}</CardTitle>
         </CardHeader>
@@ -45,25 +91,17 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
                 onClick={() => handleAnswerClick(option)}
                 variant="outline"
                 className={`w-full ${
-                  selectedAnswer === option ? 'bg-blue-500 text-white' : ''
+                  selectedAnswer === option ? 'bg-black text-white' : ''
                 }`}
               >
                 {option}
               </Button>
             ))}
           </div>
-
           {selectedAnswer && (
             <div className="mt-4 text-center">
-              <p
-                className={`text-lg font-semibold ${
-                  selectedAnswer === question.correctAnswer ? 'text-green-500' : 'text-red-500'
-                }`}
-              >
-                {selectedAnswer === question.correctAnswer ? 'Correct!' : 'Wrong answer.'}
-              </p>
               <Button onClick={handleNextQuestion} className="mt-4">
-                {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
+                {currentQuestionIndex < questions.length - 1 ? 'Следующий вопрос' : 'Завершить'}
               </Button>
             </div>
           )}
