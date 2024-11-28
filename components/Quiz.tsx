@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Question } from '@/data/quizzes';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -28,6 +28,17 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const router = useRouter();
+
+
+  // Функция для перемешивания массива
+  function shuffleArray<T>(array: T[]): T[] {
+    return [...array].sort(() => Math.random() - 0.5);
+  }
+
+  // Перемешиваем варианты ответа для текущего вопроса
+  const shuffledOptions = useMemo(
+      () => shuffleArray(questions[currentQuestionIndex].options), [currentQuestionIndex, questions] // Обновляем при смене вопроса
+  );
 
   const handleAnswerClick = (answer: string) => {
       if (answer === questions[currentQuestionIndex].correctAnswer) {
@@ -84,14 +95,14 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
   const question = questions[currentQuestionIndex];
 
   return (
-    <div className="flex flex-col items-center justify-center ">
+    <div className="flex flex-col items-center justify-center">
       <Card className="max-w-2xl mb-6">
         <CardHeader>
           <CardTitle className="text-xl">{question.question}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 gap-3">
-            {question.options.map((option, index) => (
+            {shuffledOptions.map((option, index) => (
               <Button
                 key={index}
                 onClick={() => handleAnswerClick(option)}
