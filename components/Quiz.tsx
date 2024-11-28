@@ -86,7 +86,7 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
 
   return (
     <div className="flex flex-col items-center justify-center ">
-      <Card className="max-w-xl mb-6">
+      <Card className="max-w-2xl mb-6">
         <CardHeader>
           <CardTitle className="text-xl">{question.question}</CardTitle>
         </CardHeader>
