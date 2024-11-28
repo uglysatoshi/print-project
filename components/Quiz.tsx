@@ -54,11 +54,10 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
             break;
           default:
             console.warn(`Unknown theme: ${questions[currentQuestionIndex].theme}`);
-
       }
-      console.log(score, theme1, theme2, theme3, theme4, theme5, theme6);
-      setSelectedAnswer(answer);
     }
+    console.log(score, theme1, theme2, theme3, theme4, theme5, theme6);
+    setSelectedAnswer(answer);
   }
 
   const handleNextQuestion = () => {
