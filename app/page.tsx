@@ -45,6 +45,9 @@ export default function Home() {
         }
     };
 
+    // Получаем текущую дату в формате YYYY-MM-DD
+    const today = new Date().toISOString().split("T")[0];
+
     // Проверяем, заполнены ли все поля
     const isFormComplete = formData.name && formData.group && formData.date;
 
@@ -77,6 +80,7 @@ export default function Home() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="framework">Дата прохождения</Label>
                                 <Input
+                                    max={today} // Ограничение выбора дат из будущего
                                     type="date"
                                     id="date"
                                     onChange={handleChange}
