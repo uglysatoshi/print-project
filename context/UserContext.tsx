@@ -5,22 +5,23 @@ interface UserContextType {
     name: string;
     group: string;
     date: string;
-    score?: number;
+    score: number;
     theme1: number;
     theme2: number;
     theme3: number;
     theme4: number;
     theme5: number;
     theme6: number;
-    setUserData: (data: { name: string; group: string; date: string; score: number; theme1: number; theme2: number; theme3: number; theme4: number; theme5: number; theme6: number;}) => void;
+    semiScore: number;
+    setUserData: (data: { name: string; group: string; date: string; score: number; theme1: number; theme2: number; theme3: number; theme4: number; theme5: number; theme6: number; semiScore: number;}) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [userData, setUserData] = useState({ name: "", group: "", date: "" , score: 0, theme1: 0, theme2: 0, theme3: 0, theme4: 0, theme5: 0, theme6: 0});
+    const [userData, setUserData] = useState({ name: "", group: "", date: "" , score: 0, theme1: 0, theme2: 0, theme3: 0, theme4: 0, theme5: 0, theme6: 0, semiScore: 0 });
 
-    const setUserDataHandler = (data: { name: string; group: string; date: string; score: number; theme1: number; theme2: number; theme3: number; theme4: number; theme5: number; theme6: number;}) => {
+    const setUserDataHandler = (data: { name: string; group: string; date: string; score: number; theme1: number; theme2: number; theme3: number; theme4: number; theme5: number; theme6: number; semiScore: number;}) => {
         setUserData(data);
     };
 
