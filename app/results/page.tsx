@@ -8,15 +8,11 @@ import { useUserContext } from "@/context/UserContext";
 import {ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent} from "@/components/ui/chart";
 import {PolarAngleAxis, PolarGrid, Radar, RadarChart} from "recharts";
 
-
-
-
-
 const chartConfig = {
 } satisfies ChartConfig
 
 const ResultsPage = () => {
-    const { name, group, date, score, theme1, theme2, theme3, theme4, theme5, theme6 } = useUserContext();
+    const { name, group, date, score, theme1, theme2, theme3, theme4, theme5, theme6, semiScore, rightScore } = useUserContext();
 
     const chartData = [
         { theme: "Современные технологии цифровой печати", "Верные ответы": theme1 },
@@ -27,9 +23,21 @@ const ResultsPage = () => {
         { theme: "Технологии Computer", "Верные ответы": theme6 },
     ]
 
+    function themeKnowledge(theme: number) {
+        if (theme/10 >= 0.8) {
+            return "Отличное знание темы."
+        }
+        if (theme/10 < 0.8 && theme/10 >= 0.4) {
+            return "Хорошее знание темы. Можно повторить материал."
+        }
+        if (theme/10 < 0.4) {
+            return "Плохое знание темы. Нужно учить материал."
+        }
+    }
+
     return (
         <div className="flex flex-col items-center min-h-screen p-4 gap-6">
-            <Card className="w-[350px] max-w-2xl">
+            <Card className=" max-w-xl">
                 <CardHeader>
                     <CardTitle>Данные о прохождении теста</CardTitle>
                     <CardDescription>При обновлении страницы прогресс будет сброшен. </CardDescription>
@@ -48,10 +56,29 @@ const ResultsPage = () => {
                                 <Label htmlFor="framework">Дата прохождения: {date}</Label>
                             </div>
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="framework">Результат: {score} / 60</Label>
+                                <Label htmlFor="framework">Общее количество баллов: {score} / 120</Label>
+                                <Label htmlFor="framework">Правильных ответов: {rightScore} </Label>
+                                <Label htmlFor="framework">Похожих ответов: {semiScore} </Label>
+                                <Label htmlFor="framework">Неверных ответов: {60 - rightScore - semiScore} </Label>
                             </div>
                         </div>
                     </form>
+                </CardContent>
+                <Separator className="my-2"/>
+                <CardHeader>
+                    <CardTitle>Критерии оценивания</CardTitle>
+                    <CardDescription>Информация о знаниях по каждой тематике. </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="flex flex-col space-y-1.5">
+                        <Label htmlFor="framework">«Современные технологии цифровой печати»: {themeKnowledge(theme1)}</Label>
+                        <Label htmlFor="framework">«Электрофотография»: {themeKnowledge(theme2)}</Label>
+                        <Label htmlFor="framework">«Импульсная и непрерывная струйная печать»: {themeKnowledge(theme3)}</Label>
+                        <Label htmlFor="framework">«Термографические и термосублимационные технологии»: {themeKnowledge(theme4)}</Label>
+                        <Label htmlFor="framework">«Цифровая фотопечать»: {themeKnowledge(theme5)}</Label>
+                        <Label htmlFor="framework">«Технологии Computer-to-»: {themeKnowledge(theme6)}
+                        </Label>
+                    </div>
                 </CardContent>
                 <Separator className="my-2"/>
                 <CardHeader className="items-center">

@@ -31,6 +31,8 @@ export default function Home() {
         theme4: 0,
         theme5: 0,
         theme6: 0,
+        semiScore: 0,
+        rightScore: 0,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

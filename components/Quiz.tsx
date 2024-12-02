@@ -14,6 +14,8 @@ interface QuizProps {
 const Quiz: React.FC<QuizProps> = ({ questions }) => {
   const { setUserData } = useUserContext();
   const [score, setScore] = useState(0);
+  const [rightScore, setRightScore] = useState(0);
+  const [semiScore, setSemiScore] = useState(0);
   const [theme1, setScore1] = useState(0);
   const [theme2, setScore2] = useState(0);
   const [theme3, setScore3] = useState(0);
@@ -42,7 +44,8 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
 
   const handleAnswerClick = (answer: string) => {
       if (answer === questions[currentQuestionIndex].correctAnswer) {
-        setScore((prev: number) => prev + 1);
+        setRightScore((prev: number) => prev + 1)
+        setScore((prev: number) => prev + 2);
         // Подсчёт баллов по темам
         switch (questions[currentQuestionIndex].theme) {
           case "Современные технологии цифровой печати":
@@ -67,6 +70,10 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
             console.warn(`Unknown theme: ${questions[currentQuestionIndex].theme}`);
       }
     }
+    if (answer === questions[currentQuestionIndex].semiCorrectAnswer) {
+      setSemiScore((prev: number) => prev + 1);
+      setScore((prev: number) => prev + 1);
+    }
     console.log(score, theme1, theme2, theme3, theme4, theme5, theme6);
     setSelectedAnswer(answer);
   }
@@ -87,6 +94,8 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
         theme4: theme4,
         theme5: theme5,
         theme6: theme6,
+        semiScore: semiScore,
+        rightScore: rightScore,
       });
       router.push('/results');
     }
